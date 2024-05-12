@@ -306,10 +306,11 @@ def blink_rgb():
 
 def disconnect_from_wifi():
     wlan = network.WLAN(network.STA_IF)
-    wlan.disconnect()
-    print('WLAN-Verbindung beendet')
-    blink_red()
-    time.sleep(2)
+    if wlan.isconnected():
+        wlan.disconnect()
+        print('WLAN-Verbindung beendet')
+        blink_red()
+        time.sleep(2)
 
 def connect_to_wifi():
     wlan = network.WLAN(network.STA_IF)
